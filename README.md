@@ -1,6 +1,8 @@
 # Marketplace
 ### Copyright Adina-Maria Amzarescu 331CA
 
+____________________________________________________________________________________
+
 This project implements a multi-threaded system where producers make 
 products and publish them to a marketplace. The marketplace is designed 
 to handle multiple producers and consumers concurrently, allowing for 
