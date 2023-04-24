@@ -22,7 +22,7 @@ class Marketplace:
             # Dictionary to keep track of which producer published which product
             self.producer_product = {}
             self.carts = []  # List of carts created by consumers
-        except TypeError as error:
+        except ValueError as error:
             raise ValueError("queue_size_per_producer must be an integer") from error
 
     def register_producer(self):

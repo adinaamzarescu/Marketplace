@@ -34,17 +34,11 @@ ________________________________________________________________________________
 
 ## Implementation
 
-`Producer`
+### `Producer`
 
 This module represents a Producer class.
 
-The Producer class is a subclass of the Thread class from the threading module. 
-It has a constructor (init method) that takes in parameters such as products, 
-marketplace, republish_wait_time, and other kwargs.
-The constructor initializes the Producer object by calling the superclass's init() 
-method and setting the products, republish_wait_time, and marketplace attributes.
-The constructor also registers the producer with the marketplace and obtains 
-a producer ID.
+The Producer class is a subclass of the Thread class from the threading module.
 
 The Producer class has a run() method that represents the main logic of the 
 producer thread. The run() method contains a while loop that iterates through the 
@@ -62,12 +56,23 @@ The purpose of using try-except blocks in the init() and run() methods is
 to handle errors gracefully and provide informative error messages for 
 debugging and troubleshooting purposes.
 
-`Consumer`
+Additional explanations:
+
+* super().__init__(**kwargs)
+
+    This is calling the __init__() method of the parent class (Thread)
+
+* sleep_time = max(0, self.republish_wait_time - time_sleep_normal)
+
+    This determines how much time the producer thread should sleep before 
+    attempting to republish a product to the marketplace. 
+    This allows the producer thread to sleep for the appropriate amount 
+    of time.
+
+### `Consumer`
 
 This module represents a Consumer class.
 
-The constructor sets the name of the consumer, retry wait time, marketplace 
-reference, and consumer's carts.
 The Consumer class has a run method that represents the main logic of the 
 consumer thread.
 The run method iterates through each cart in the carts list.
@@ -86,29 +91,60 @@ the cart in the marketplace using the place_order method of the marketplace.
 It then iterates through the products in the order and prints the name of 
 the consumer and the product they bought using the print statement.
 
-`Marketplace`
+Additional explanations:
+
+* super().__init__(**kwargs)
+
+    This is calling the __init__() method of the parent class (Thread)
+
+* if result is None or result
+
+    This is used to determine if the operation (either adding or 
+    removing a product from the cart) was successful.
+
+### `Marketplace`
 
 The Marketplace class represents a marketplace where producers can 
 publish products and consumers can create carts, add products to the 
 carts, and place orders.
 
-The class has the following attributes:
+Additional explanations:
 
-- `queue_size_per_producer`: An integer representing the maximum 
-size of a queue associated with each producer.
-- `queue_producers`: A list of queues, one per producer, initially empty.
-- `products`: A list of products available in the marketplace, initially empty.
-- `producer_product`: A dictionary to keep track of which producer published 
-which product.
-- `carts`: A list of carts created by consumers, initially empty.
+* self.queue_producers = [ [] for _ in range(queue_size_per_producer) ]
 
-The class has the following methods:
+    This creates a list of empty lists, where the number of empty 
+    lists is determined by the value of queue_size_per_producer.
 
-- `__init__(self, queue_size_per_producer)`: The constructor method that initializes the `queue_size_per_producer` attribute and creates empty lists for `queue_producers`, `products`, and `carts`. It also raises a `ValueError` if the `queue_size_per_producer` parameter is not an integer.
-- `register_producer(self)`: A method that registers a producer and returns an ID for the registered producer. It appends an empty queue for the registered producer to the `queue_producers` list and returns the ID, which is the current length of the list.
-- `publish(self, producer_id, product)`: A method that adds a product provided by a producer to the marketplace. It checks if the producer's queue is full based on the `queue_size_per_producer` attribute, and if not, adds the product to the marketplace, updates the `producer_product` dictionary, and adds a placeholder to the producer's queue. It returns `True` if the product was published successfully, and `False` if the producer's queue is full.
-- `new_cart(self)`: A method that creates a new cart for a consumer and returns the ID of the newly created cart. It appends an empty cart for the consumer to the `carts` list and returns the ID, which is the current length of the list.
-- `add_to_cart(self, cart_id, product)`: A method that adds a product to a given cart. It checks if the product is available in the marketplace based on the `products` list, and if so, removes the product from the marketplace, adds the product to the cart, and updates the producer's queue if applicable. It returns `True` if the product was added successfully, and `False` if the product is not available in the marketplace.
-- `remove_from_cart(self, cart_id, product)`: A method that removes a product from a cart. It removes the product from the cart and adds the product back to the marketplace. It also adds a placeholder to the producer's queue if applicable.
-- `place_order(self, cart_id)`: A method that returns a list of products in a cart based on the `carts` list. It returns an empty list if the cart ID is invalid.
 
+____________________________________________________________________________________
+
+## Important
+
+* Why is the project useful?
+
+    This project involves designing a system for a marketplace with multiple 
+    components. It requires making decisions on how to organize and structure 
+    the code to ensure modularity, reusability, and maintainability. It also 
+    has a real-world application because the concept of a marketplace 
+    is a common real-world scenario.
+
+* Is the solution efficient?
+
+    There are many ways in which I could improve the project. 
+    As an example, I used lists in the marketplace, but I think using 
+    dictionaries would have been a better approach.
+
+* Encountered problems:
+
+    A problem in my approach is the fact that I thought the code 
+    in C, and then I translated it into python. That's why I think 
+    I didn't use all the functionalities offered by python
+
+____________________________________________________________________________________
+
+## Resources
+
+1. https://docs.python.org/3/library/threading.html
+2. https://docs.python.org/3/library/threading.html#thread-objects
+3. https://docs.python.org/3/library/time.html
+4. https://stackoverflow.com/questions/510348/how-do-i-make-a-time-delay

@@ -21,7 +21,7 @@ class Consumer(Thread):
             **kwargs: Other arguments that are passed to the Thread's __init__().
 
         Raises:
-            TypeError: If there is an error during consumer initialization.
+            ValueError: If there is an error during consumer initialization.
         """
         try:
             super().__init__(**kwargs)
