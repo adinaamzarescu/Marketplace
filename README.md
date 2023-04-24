@@ -141,6 +141,9 @@ ________________________________________________________________________________
     A problem in my approach is the fact that I thought the code 
     in C, and then I translated it into python. That's why I think 
     I didn't use all the functionalities offered by python
+    
+    I also thought that the project was easy at first glance and I 
+    did not start it in time.
 
 ____________________________________________________________________________________
 
