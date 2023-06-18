@@ -1,5 +1,5 @@
 # Marketplace
-### Copyright Adina-Maria Amzarescu 331CA
+### Copyright Adina-Maria Amzarescu
 
 ____________________________________________________________________________________
 
@@ -117,33 +117,6 @@ Additional explanations:
     This creates a list of empty lists, where the number of empty 
     lists is determined by the value of queue_size_per_producer.
 
-
-____________________________________________________________________________________
-
-## Important
-
-* Why is the project useful?
-
-    This project involves designing a system for a marketplace with multiple 
-    components. It requires making decisions on how to organize and structure 
-    the code to ensure modularity, reusability, and maintainability. It also 
-    has a real-world application because the concept of a marketplace 
-    is a common real-world scenario.
-
-* Is the solution efficient?
-
-    There are many ways in which I could improve the project. 
-    As an example, I used lists in the marketplace, but I think using 
-    dictionaries would have been a better approach.
-
-* Encountered problems:
-
-    A problem in my approach is the fact that I thought the code 
-    in C, and then I translated it into python. That's why I think 
-    I didn't use all the functionalities offered by python
-    
-    I also thought that the project was easy at first glance and I 
-    did not start it in time.
 
 ____________________________________________________________________________________
 
